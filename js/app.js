@@ -90,7 +90,7 @@ Player.prototype.resetPlayer = function(){
 Player.prototype.checkCollisions = function() {
     for (enemy in allEnemies) {
         if (Math.sqrt((this.x - allEnemies[enemy].x)*(this.x - allEnemies[enemy].x)+
-                      (this.y - allEnemies[enemy].y-10)*(this.y - allEnemies[enemy].y-10)) < 70) {
+                      (this.y - allEnemies[enemy].y)*(this.y - allEnemies[enemy].y)) < 60) {
             this.x = playerInitialX;
             this.y = playerInitialY;
         }
