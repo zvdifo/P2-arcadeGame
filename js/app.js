@@ -8,7 +8,7 @@ var Enemy = function(initialX,initialY,speed) {
     // The image/sprite for our enemies, this uses
     // a helper we've provided to easily load images
     this.sprite = 'images/enemy-bug.png';	
-}
+};
 
 // Update the enemy's position, required method for game *
 // Parameter: dt, a time delta between ticks
@@ -21,12 +21,12 @@ Enemy.prototype.update = function(dt) {
 		this.x = -60;
 		this.speed = Math.floor((Math.random()*5 + 1))*60;
 	}
-}
+};
 
 // Draw the enemy on the screen, required method for game *
 Enemy.prototype.render = function() {
     ctx.drawImage(Resources.get(this.sprite), this.x, this.y);
-}
+};
 
 // Now write your own player class
 // This class requires an update(), render() and
@@ -36,21 +36,21 @@ var playerInitialX = 200;
 var playerInitialY = 400;
 
 // initiates the Player.
-var Player = function(){
+var Player = function() {
 	this.x = playerInitialX;
 	this.y = playerInitialY;
 	this.sprite = 'images/char-horn-girl.png';
 	this.speed = 100;
-}
+};
 
 //empty, what really works is the handleInput methods.*
 Player.prototype.update = function(dt) {	
-}
+};
 
 //Draw the player on the screen, required method for game *
 Player.prototype.render = function() {
     ctx.drawImage(Resources.get(this.sprite), this.x, this.y);
-}
+};
 
 
 //handleInput for player,responsing for keyboard movements.*
@@ -76,7 +76,7 @@ Player.prototype.handleInput = function(keyCode) {
 			this.y += 80;				
 		}
 	}	
-}
+};
 
 //reset player if reach the river.*
 Player.prototype.resetPlayer = function(){
@@ -84,18 +84,18 @@ Player.prototype.resetPlayer = function(){
 		this.x = playerInitialX;
         this.y = playerInitialY;
 	}	
-}
+};
 
 //check collisions.*
 Player.prototype.checkCollisions = function() {
-    for (enemy in allEnemies) {
+    for (var enemy in allEnemies) {
         if (Math.sqrt((this.x - allEnemies[enemy].x)*(this.x - allEnemies[enemy].x)+
                       (this.y - allEnemies[enemy].y)*(this.y - allEnemies[enemy].y)) < 60) {
             this.x = playerInitialX;
             this.y = playerInitialY;
         }
     }  
-}
+};
 
 
 
