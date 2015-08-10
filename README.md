@@ -9,6 +9,4 @@ In this game you have a Player and Enemies. The goal of the player is to reach t
 
 Instruction
 -------------------------------
-1.Clone the repository on your machine<br>
-2.Open the file"index.html" in your browser<br>
-3.Game begins<br>
+view live demonstrantions at this site: http://zvdifo.github.io/P3-arcadeGame/
