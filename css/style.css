@@ -1,3 +1,5 @@
 body {
-    text-align: center;
+	text-align: center;
+	background:#dcedc8;
+	transition:0.5s;
 }

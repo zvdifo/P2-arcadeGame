@@ -45,8 +45,13 @@ var Engine = (function(global) {
         /* Call our update/render functions, pass along the time delta to
          * our update function since it may be used for smooth animation.
          */
+        if ( player.lifes < 1 || player.level >= 5) {
+            reset();
+        }
+
         update(dt);
         render();
+        player.changeColor();
 
         /* Set our lastTime variable which is used to determine the time delta
          * for the next time this function is called.
@@ -78,7 +83,10 @@ var Engine = (function(global) {
      * functionality this way (you could just implement collision detection
      * on the entities themselves within your app.js file).
      */
-    function update(dt) {
+    function update(dt) {        
+        if (player.lifes<1){
+            reset();
+        }
         updateEntities(dt);
         player.checkCollisions();
     }
@@ -95,6 +103,7 @@ var Engine = (function(global) {
             enemy.update(dt);
         });
         player.update();
+        gem.update();
     }
 
     /* This function initially draws the "game level", it will then call
@@ -137,6 +146,16 @@ var Engine = (function(global) {
         }
 
         renderEntities();
+        ctx.clearRect(0, 0, canvas.width, 50);
+        ctx.font = "25px Sans";
+        ctx.textAlign = "left";
+        ctx.fillStyle = "black";
+        ctx.fillText('level: '+ player.level, 5, 45);
+        ctx.fillText('score: ' + player.score, 200, 45);
+
+        for (var i = 0; i < player.lifes; i++) {
+            ctx.drawImage(Resources.get('images/Heart.png'), 380 + i*35, 45, 30, 50);
+        }
     }
 
     /* This function is called by the render function and is called on each game
@@ -152,6 +171,7 @@ var Engine = (function(global) {
         });
 
         player.render();
+        gem.render();
     }
 
     /* This function does nothing but it could have been a good place to
@@ -160,6 +180,9 @@ var Engine = (function(global) {
      */
     function reset() {
         // noop
+        player.score = 0;
+        player.lifes = 3; 
+        document.body.style.background = "#dcedc8";
     }
 
     /* Go ahead and load all of the images we know we're going to need to
@@ -171,7 +194,11 @@ var Engine = (function(global) {
         'images/water-block.png',
         'images/grass-block.png',
         'images/enemy-bug.png',
-        'images/char-horn-girl.png'
+        'images/char-horn-girl.png',
+        'images/Heart.png', 
+        'images/GemBlue.png',
+        'images/GemGreen.png', 
+        'images/GemOrange.png'
     ]);
     Resources.onReady(init);
 

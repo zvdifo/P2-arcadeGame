@@ -4,10 +4,48 @@
     <meta charset="UTF-8">
     <title>Effective JavaScript: Frogger</title>
     <link rel="stylesheet" href="css/style.css">
+    <link rel="stylesheet" type="text/css" href="css/sidebar.css" />
+	<script src="http://ajax.googleapis.com/ajax/libs/jquery/1.9.1/jquery.min.js"></script>
+	<script src="http://ajax.googleapis.com/ajax/libs/jqueryui/1.10.2/jquery-ui.min.js"></script>
+	<script type="text/javascript" src="js/jquery.sidebar.js"></script>
 </head>
 <body>
+	<ul id="demo_menu2" >
+	<li><a href="#" >↑↓→←上下左右移动</a></li>
+	<li><a href="#" >抵达河岸score加100</a></li>
+	<li><a href="#" >每400分加一个level</a></li>
+	<li><a href="#" >钻石也可加分哦</a></li>
+	<li><a href="#" >5级即获胜重新开始</a></li>
+	<hr style ="border-width: 1px 0px;
+border-style: solid none;
+border-color: rgba(0, 0, 0, 0.1); margin-top:5px;margin-bottom:6px;">
+	<li><a href="#" style="text-style:italic">Have Fun!</a></li>
+	</ul>
     <script src="js/resources.js"></script>
     <script src="js/app.js"></script>
     <script src="js/engine.js"></script>
+    <script type="text/javascript">
+        $("ul#demo_menu1").sidebar();
+        $("ul#demo_menu2").sidebar({
+            position:"right",
+            callback:{
+                item : {
+                    enter : function(){
+                        $(this).find("a").animate({color:"#1a2047"}, 150);
+                    },
+                    leave : function(){
+                        $(this).find("a").animate({color:"#1a2047"}, 150);
+                    }
+                }
+            }
+        });
+        $("ul#demo_menu3").sidebar({
+            position:"top",
+          open:"click"
+        });
+        $("ul#demo_menu4").sidebar({
+            position:"bottom"
+        });
+    </script>
 </body>
 </html>
